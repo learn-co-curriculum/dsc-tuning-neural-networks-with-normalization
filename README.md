@@ -13,13 +13,13 @@ You will be able to:
 
 One way to speed up training of your neural networks is to normalize the input. In fact, even if training time were not a concern, normalization to a consistent scale across features (typically 0 to 1) should be used to ensure that the process converges to a stable solution. Similar to some of our previous work in training models, one general process for standardizing our data is:  
 1.  subtracting the mean
-- normalize by dividing the variances
-- learning can be slow when inputs are unnormalized because of different scales.
+2. normalize by dividing by the standard deviation
 
 ## Vanishing or Exploding Gradients
 
-Example:
-Very deep neural network. Let's assume $g(z)=z$ (so no transformation, just a linear activation function), and biases equal to 0.
+Not only will normalizing your inputs speed up training, it can also mitigate other risks inherent in training neural networks. For example, in a neural network, having input of various ranges can lead to difficult numerical problems when the algorithm goes to compute gradients during forward and back propogation. This can lead to untenable solutions and will prevent the algorithm from converging to a solution. In short, make sure you normalize your data! Here's a little more mathematical background:
+
+To demonstrate, let's imagine a very deep neural network. Let's assume $g(z)=z$ (so no transformation, just a linear activation function), and biases equal to 0.
 
 $\hat y = w^{[L]}w^{[L-1]}w^{[L-2]}... w^{[3]}w^{[2]}w^{[1]}x$
 
@@ -35,30 +35,31 @@ Even if w's slightly smaller than 1 or slightly larger, the activations will exp
 
 https://www.coursera.org/learn/deep-neural-network/lecture/lXv6U/normalizing-inputs
 
-### Solution
+## Other Solutions to Vanishing and Exploding Gradients
 
-Choose your initialization wisely!
+Aside from normalizing our data, we can also investigate the impact of changing our initialization parameters when we first launch the gradient descent algorithm. 
 
-The more input features feeding into layer l, the smaller we want each $w_i$ to be. Common rule of thumb: $Var(w_i)$ = 1/n or 2/n
+For initialization, the more input features feeding into layer l, the smaller we want each $w_i$ to be.   
 
-Initialize:
-    ```w^{[l]}= np.random.randn(shape)*np.sqrt(2/n_(l-1)) ```
-    
---> common for relu
+A common rule of thumb is:   
+$Var(w_i)$ = $1/n$ or $2/n$
 
-Different initializations for different activation functions!
+One common initialization strategy for the relu activation function is:  
+  
+```w^{[l]}= np.random.randn(shape)*np.sqrt(2/n_(l-1)) ```
+  
+Later, we'll discuss other initialization strategies pertinent to other activation fuctions.
 
-## Optimization
+## Optimization  
 
-![title](optimizer.png)
+In addition, we could even use an alternative convergence algorithm instead of gradient descent. One issue with gradient descent is that it oscillates to a fairly big extent, because the derivative is bigger in the vertical direction.  
 
-What happens often is that gradient descent oscillates to a fairly big extent, because the derivative is bigger in the vertical direction.
+![title](optimizer.png)  
 
-Some optimization algorithms that work faster than gradient descent:
-
+With that, here's some optimization algorithms that work faster than gradient descent:
 
 ## Gradient Descent with Momentum
-compute an exponentially weighthed average of the gradients and use that gradient instead. because asymmetric axes, you want to have slower learning on one axis, and fasted on another one.
+Compute an exponentially weighthed average of the gradients and use that gradient instead. The intuitive interpretation is that this will successively dampen oscillations, improving convergence.
 
 Momentum:
 compute dW and db on the current minibatch.
