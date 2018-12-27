@@ -1,5 +1,5 @@
 
-# How to Optimize Your Networks
+# Normalization and Tuning Neural Networks
 
 ## Introduction
 
