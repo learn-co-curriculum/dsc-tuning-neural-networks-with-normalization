@@ -11,15 +11,15 @@ You will be able to:
 
 ## Normalized Inputs: Speed Up Training
 
-One way to speed up training of your neural networks is to normalize the input. In fact, even if training time were not a concern, normalization to a consistent scale across features (typically 0 to 1) should be used to ensure that the process converges to a stable solution. Similar to some of our previous work in training models, one general process for standardizing our data is:  
-1.  subtracting the mean
-2. normalize by dividing by the standard deviation
+One way to speed up training of your neural networks is to normalize the input. In fact, even if training time were not a concern, normalization to a consistent scale (typically 0 to 1) across features should be used to ensure that the process converges to a stable solution. Similar to some of our previous work in training models, one general process for standardizing our data is:  
+1.  Subtracting the mean
+2. Normalize by dividing by the standard deviation
 
 ## Vanishing or Exploding Gradients
 
 Not only will normalizing your inputs speed up training, it can also mitigate other risks inherent in training neural networks. For example, in a neural network, having input of various ranges can lead to difficult numerical problems when the algorithm goes to compute gradients during forward and back propogation. This can lead to untenable solutions and will prevent the algorithm from converging to a solution. In short, make sure you normalize your data! Here's a little more mathematical background:
 
-To demonstrate, let's imagine a very deep neural network. Let's assume $g(z)=z$ (so no transformation, just a linear activation function), and biases equal to 0.
+To demonstrate, imagine a very deep neural network. Assume $g(z)=z$ (so no transformation, just a linear activation function), and biases equal to 0.
 
 $\hat y = w^{[L]}w^{[L-1]}w^{[L-2]}... w^{[3]}w^{[2]}w^{[1]}x$
 
@@ -37,12 +37,17 @@ https://www.coursera.org/learn/deep-neural-network/lecture/lXv6U/normalizing-inp
 
 ## Other Solutions to Vanishing and Exploding Gradients
 
-Aside from normalizing our data, we can also investigate the impact of changing our initialization parameters when we first launch the gradient descent algorithm. 
+Aside from normalizing the data, you can also investigate the impact of changing the initialization parameters when you first launch the gradient descent algorithm. 
 
-For initialization, the more input features feeding into layer l, the smaller we want each $w_i$ to be.   
+For initialization, the more input features feeding into layer l, the smaller you want each $w_i$ to be.   
 
 A common rule of thumb is:   
-$Var(w_i)$ = $1/n$ or $2/n$
+  
+$Var(w_i) = 1/n $  
+  
+or
+  
+$Var(w_i) = 2/n$  
 
 One common initialization strategy for the relu activation function is:  
   
@@ -52,7 +57,7 @@ Later, we'll discuss other initialization strategies pertinent to other activati
 
 ## Optimization  
 
-In addition, we could even use an alternative convergence algorithm instead of gradient descent. One issue with gradient descent is that it oscillates to a fairly big extent, because the derivative is bigger in the vertical direction.  
+In addition, you could even use an alternative convergence algorithm instead of gradient descent. One issue with gradient descent is that it oscillates to a fairly big extent, because the derivative is bigger in the vertical direction.  
 
 ![title](images/optimizer.png)  
 
@@ -68,13 +73,13 @@ Combute $V_{dw} = \beta V_{dw} + (1-\beta)dW$ and
 
 Combute $V_{db} = \beta V_{db} + (1-\beta)db$
 
---> moving average for the derivatives of W and b
+> These are the moving averages for the derivatives of W and b
 
 $W:= W- \alpha Vdw$
 
 $b:= b- \alpha Vdb$
 
-This averages out gradient descent, and will "dampen" oscillations
+> This averages out gradient descent, and will "dampen" oscillations  
 Generally, $\beta=0.9$ is a good hyperparameter value.
 
 
@@ -158,7 +163,7 @@ Manual decay!
 
 ## Hyperparameter Tuning
 
-Now that we've ween some optimization algorithms, let's have another look at all the hyperparameters that need tuning.
+Now that you've ween some optimization algorithms, take another look at all the hyperparameters that need tuning:
 
 Most important:
 - $\alpha$
@@ -187,4 +192,4 @@ https://www.coursera.org/learn/deep-neural-network/lecture/y0m1f/gradient-descen
 
 ## Summary 
 
-In this lesson we began discussing issues regarding the convergence of neural networks training. This included the need for normalization as well as initialization parameters and some optimization algorithms. In the upcoming lab, you'll further investigate these ideas in practice and observe their impacts from various perspectives.
+In this lesson you began learning about issues regarding the convergence of neural networks training. This included the need for normalization as well as initialization parameters and some optimization algorithms. In the upcoming lab, you'll further investigate these ideas in practice and observe their impacts from various perspectives.
