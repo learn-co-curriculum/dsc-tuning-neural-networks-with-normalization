@@ -1,5 +1,5 @@
 
-# Normalization and Tuning Neural Networks
+# Tuning Neural Networks with Normalization
 
 ## Introduction
 
