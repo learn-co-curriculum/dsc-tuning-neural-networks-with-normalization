@@ -54,7 +54,7 @@ Later, we'll discuss other initialization strategies pertinent to other activati
 
 In addition, we could even use an alternative convergence algorithm instead of gradient descent. One issue with gradient descent is that it oscillates to a fairly big extent, because the derivative is bigger in the vertical direction.  
 
-![title](optimizer.png)  
+![title](images/optimizer.png)  
 
 With that, here's some optimization algorithms that work faster than gradient descent:
 
