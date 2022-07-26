@@ -1,9 +1,8 @@
-
 # Tuning Neural Networks with Normalization
 
 ## Introduction
 
-Now that we've investigated some methods for tuning our networks, we will investigate some further methods and concepts regarding reducing training time. These concepts will begin to form a more cohesive framework for choices along the modelling process.
+Now that we've investigated some methods for tuning our networks, we will investigate some further methods and concepts regarding reducing training time. These concepts will begin to form a more cohesive framework for choices along the modeling process.
 
 ## Objectives
 You will be able to: 
@@ -18,7 +17,7 @@ One way to speed up training of your neural networks is to normalize the input. 
 
 ## Vanishing or Exploding Gradients
 
-Not only will normalizing your inputs speed up training, it can also mitigate other risks inherent in training neural networks. For example, in a neural network, having input of various ranges can lead to difficult numerical problems when the algorithm goes to compute gradients during forward and back propogation. This can lead to untenable solutions and will prevent the algorithm from converging to a solution. In short, make sure you normalize your data! Here's a little more mathematical background: 
+Not only will normalizing your inputs speed up training, it can also mitigate other risks inherent in training neural networks. For example, in a neural network, having input of various ranges can lead to difficult numerical problems when the algorithm goes to compute gradients during forward and back propagation. This can lead to untenable solutions and will prevent the algorithm from converging to a solution. In short, make sure you normalize your data! Here's a little more mathematical background: 
 
 To demonstrate, imagine a very deep neural network. Assume $g(z)=z$ (so no transformation, just a linear activation function), and biases equal to 0. 
 
@@ -54,19 +53,19 @@ One common initialization strategy for the relu activation function is:
 w^{[l]} = np.random.randn(shape)*np.sqrt(2/n_(l-1)) 
 ```
   
-Later, we'll discuss other initialization strategies pertinent to other activation fuctions.
+Later, we'll discuss other initialization strategies pertinent to other activation functions.
 
 ## Optimization  
 
 In addition, you could even use an alternative convergence algorithm instead of gradient descent. One issue with gradient descent is that it oscillates to a fairly big extent, because the derivative is bigger in the vertical direction.  
 
-<img src="images/new_optimizer.png" width="600">  
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-tuning-neural-networks-with-normalization/master/images/new_optimizer.png" alt="oscillating gradient descent" width="600">  
 
 With that, here are some optimization algorithms that work faster than gradient descent:
 
 ### Gradient Descent with Momentum 
 
-Compute an exponentially weighthed average of the gradients and use that gradient instead. The intuitive interpretation is that this will successively dampen oscillations, improving convergence.
+Compute an exponentially weighted average of the gradients and use that gradient instead. The intuitive interpretation is that this will successively dampen oscillations, improving convergence.
 
 Momentum: 
 
@@ -117,7 +116,7 @@ $V_{dw} = \beta_1 V_{dw} + (1-\beta_1)dW$, $V_{db} = \beta_1 V_{db} + (1-\beta_1
 
 $S_{dw} = \beta_2 S_{dw} + (1-\beta_2)dW^2$, $S_{db} = \beta_2 S_{db} + (1-\beta_2)db^2$ 
 
-Is like momentum and then RMSprop. We need to perform a correction! This is sometimes also done in RSMprop, but definitely here too.
+It's like momentum and then RMSprop. We need to perform a correction! This is sometimes also done in RSMprop, but definitely here too.
 
 
 $V^{corr}_{dw}= \dfrac{V_{dw}}{1-\beta_1^t}$, $V^{corr}_{db}= \dfrac{V_{db}}{1-\beta_1^t}$
