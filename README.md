@@ -116,7 +116,7 @@ $V_{dw} = \beta_1 V_{dw} + (1-\beta_1)dW$, $V_{db} = \beta_1 V_{db} + (1-\beta_1
 
 $S_{dw} = \beta_2 S_{dw} + (1-\beta_2)dW^2$, $S_{db} = \beta_2 S_{db} + (1-\beta_2)db^2$  
 
-It's like momentum and then RMSprop. We need to perform a correction! This is sometimes also done in RSMprop, but definitely here too.
+It's like momentum and then RMSprop. We need to perform a correction! This is sometimes also done in RSMprop, but definitely here too.  
 
 
 $V^\mathbf{corr}_{dw}= \dfrac{V_{dw}}{1-\beta_1^t}$, $V^{corr}_{db}= \dfrac{V_{db}}{1-\beta_1^t}$  
