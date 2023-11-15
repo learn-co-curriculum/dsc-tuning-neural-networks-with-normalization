@@ -121,20 +121,21 @@ It's like momentum and then RMSprop. We need to perform a correction! This is so
 
 
 ```math
-V^\mathbf{corr}_{dw}= \dfrac{V_{dw}}{1-\beta_1^t}$, $V^{corr}_{db}= \dfrac{V_{db}}{1-\beta_1^t} 
-``` 
+V^\mathbf{corr}_{dw}= \dfrac{V_{dw}}{1-\beta_1^t}, V^{corr}_{db}= \dfrac{V_{db}}{1-\beta_1^t}
+```  
 
 ```math
-S^{corr}_{dw}= \dfrac{S_{dw}}{1-\beta_2^t}$, $S^{corr}_{db}= \dfrac{S_{db}}{1-\beta_2^t}
-``` 
+S^{corr}_{dw}= \dfrac{S_{dw}}{1-\beta_2^t}, $S^{corr}_{db}= \dfrac{S_{db}}{1-\beta_2^t}
+```  
 
 ```math
 W:= W- \alpha \dfrac{V^{corr}_{dw}}{\sqrt{S^{corr}_{dw}+\epsilon}}
-``` and  
+```
+and  
 
 ```math
 b:= b- \alpha \dfrac{V^{corr}_{db}}{\sqrt{S^{corr}_{db}+\epsilon}}
-```
+```  
 
 
 Hyperparameters: 
@@ -150,15 +151,19 @@ Generally, only $\alpha$ gets tuned.
 
 Learning rate decreases across epochs.
 
-$\alpha = \dfrac{1}{1+\text{decay_rate * epoch_nb}}* \alpha_0$
+```math
+\alpha = \dfrac{1}{1+\text{decay_rate * epoch_nb}}* \alpha_0
+```
 
 other methods:
 
-$\alpha = 0.97 ^{\text{epoch_nb}}* \alpha_0$ (or exponential decay)
+```math
+\alpha = 0.97 ^{\text{epoch_nb}}* \alpha_0$ (or exponential decay)
 
 or
 
-$\alpha = \dfrac{k}{\sqrt{\text{epoch_nb}}}* \alpha_0$
+$\alpha = \dfrac{k}{\sqrt{\text{epoch_nb}}}* \alpha_0
+```
 
 or
 
