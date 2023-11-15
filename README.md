@@ -27,9 +27,10 @@ recall that $z^{[1]} =w^{[1]}x $, and that $a^{[1]}=g(z^{[1]})=z^{[1]}$
 
 similarly, $a^{[2]}=g(z^{[2]})=g(w^{[2]}a^{[1]})$
 
-Imagine two nodes in each layer, and w =  $\begin{bmatrix} 1.3 & 0 \\ 0 & 1.3 \end{bmatrix}$ 
+Imagine two nodes in each layer,
+<img src="https://curriculum-content.s3.amazonaws.com/data-science/images/w2x2.png/w2x2.png" alt="diagonal 2 by 2 matrix" width="200" height="150" />
 
-$\hat y = w^{[L]} \begin{bmatrix} 1.3 & 0 \\ 0 & 1.3 \end{bmatrix}^{L-1}   x$
+<img src="https://curriculum-content.s3.amazonaws.com/data-science/images/yhatw.png/yhatw.png" alt="diagonal 2 by 2 matrix" width="200" height="150" />
 
 Even if the $w$'s are slightly smaller than 1 or slightly larger, the activations will explode when there are many layers in the network!   
 
@@ -116,16 +117,25 @@ $V_{dw} = \beta_1 V_{dw} + (1-\beta_1)dW$, $V_{db} = \beta_1 V_{db} + (1-\beta_1
 
 $S_{dw} = \beta_2 S_{dw} + (1-\beta_2)dW^2$, $S_{db} = \beta_2 S_{db} + (1-\beta_2)db^2$  
 
-It's like momentum and then RMSprop. We need to perform a correction! This is sometimes also done in RSMprop, but definitely here too.
+It's like momentum and then RMSprop. We need to perform a correction! This is sometimes also done in RSMprop, but definitely here too.  
 
 
-$V^\mathbf{corr}_{dw}= \dfrac{V_{dw}}{1-\beta_1^t}$, $V^{corr}_{db}= \dfrac{V_{db}}{1-\beta_1^t}$  
+```math
+V^\mathbf{corr}_{dw}= \dfrac{V_{dw}}{1-\beta_1^t}, V^{corr}_{db}= \dfrac{V_{db}}{1-\beta_1^t}
+```  
 
-$S^{corr}_{dw}= \dfrac{S_{dw}}{1-\beta_2^t}$, $S^{corr}_{db}= \dfrac{S_{db}}{1-\beta_2^t}$  
+```math
+S^{corr}_{dw}= \dfrac{S_{dw}}{1-\beta_2^t}, S^{corr}_{db}= \dfrac{S_{db}}{1-\beta_2^t}
+```  
 
-$W:= W- \alpha \dfrac{V^{corr}_{dw}}{\sqrt{S^{corr}_{dw}+\epsilon}}$ and  
+```math
+W:= W- \alpha \dfrac{V^{corr}_{dw}}{\sqrt{S^{corr}_{dw}+\epsilon}}
+```
+and  
 
-$b:= b- \alpha \dfrac{V^{corr}_{db}}{\sqrt{S^{corr}_{db}+\epsilon}}$  
+```math
+b:= b- \alpha \dfrac{V^{corr}_{db}}{\sqrt{S^{corr}_{db}+\epsilon}}
+```  
 
 
 Hyperparameters: 
@@ -141,15 +151,21 @@ Generally, only $\alpha$ gets tuned.
 
 Learning rate decreases across epochs.
 
-$\alpha = \dfrac{1}{1+\text{decay_rate * epoch_nb}}* \alpha_0$
+```math
+\alpha = \dfrac{1}{1+\text{decay rate * epoch nb}}* \alpha_0
+```
 
 other methods:
 
-$\alpha = 0.97 ^{\text{epoch_nb}}* \alpha_0$ (or exponential decay)
+```math
+\alpha = 0.97 ^{\text{epoch nb}}* \alpha_0
+```  
+(or exponential decay)
 
 or
-
-$\alpha = \dfrac{k}{\sqrt{\text{epoch_nb}}}* \alpha_0$
+```math
+\alpha = \dfrac{k}{\sqrt{\text{epoch nb}}}* \alpha_0
+```
 
 or
 
