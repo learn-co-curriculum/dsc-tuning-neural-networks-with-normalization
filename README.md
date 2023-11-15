@@ -125,7 +125,7 @@ V^\mathbf{corr}_{dw}= \dfrac{V_{dw}}{1-\beta_1^t}, V^{corr}_{db}= \dfrac{V_{db}}
 ```  
 
 ```math
-S^{corr}_{dw}= \dfrac{S_{dw}}{1-\beta_2^t}, $S^{corr}_{db}= \dfrac{S_{db}}{1-\beta_2^t}
+S^{corr}_{dw}= \dfrac{S_{dw}}{1-\beta_2^t}, S^{corr}_{db}= \dfrac{S_{db}}{1-\beta_2^t}
 ```  
 
 ```math
@@ -152,17 +152,19 @@ Generally, only $\alpha$ gets tuned.
 Learning rate decreases across epochs.
 
 ```math
-\alpha = \dfrac{1}{1+\text{decay_rate * epoch_nb}}* \alpha_0
+\alpha = \dfrac{1}{1+\text{decay rate * epoch nb}}* \alpha_0
 ```
 
 other methods:
 
 ```math
-\alpha = 0.97 ^{\text{epoch_nb}}* \alpha_0$ (or exponential decay)
+\alpha = 0.97 ^{\text{epoch nb}}* \alpha_0
+```  
+(or exponential decay)
 
 or
-
-$\alpha = \dfrac{k}{\sqrt{\text{epoch_nb}}}* \alpha_0
+```math
+\alpha = \dfrac{k}{\sqrt{\text{epoch nb}}}* \alpha_0
 ```
 
 or
