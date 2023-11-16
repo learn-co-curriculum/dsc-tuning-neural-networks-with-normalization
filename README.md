@@ -129,12 +129,7 @@ S^{corr}_{dw}= \dfrac{S_{dw}}{1-\beta_2^t}, S^{corr}_{db}= \dfrac{S_{db}}{1-\bet
 ```  
 
 ```math
-W:= W- \alpha \dfrac{V^{corr}_{dw}}{\sqrt{S^{corr}_{dw}+\epsilon}}
-```
-and  
-
-```math
-b:= b- \alpha \dfrac{V^{corr}_{db}}{\sqrt{S^{corr}_{db}+\epsilon}}
+W:= W- \alpha \dfrac{V^{corr}_{dw}}{\sqrt{S^{corr}_{dw}+\epsilon}} \text{ and } b:= b- \alpha \dfrac{V^{corr}_{db}}{\sqrt{S^{corr}_{db}+\epsilon}}
 ```  
 
 
